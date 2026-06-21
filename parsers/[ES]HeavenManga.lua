@@ -83,7 +83,7 @@ end
 
 function HeavenManga:prepareChapter(w,i)
 	local readerUrl
-	if w.Link:find("^/manga/leer/",1,true)then
+	if w.Link:sub(1,12)=="/manga/leer/" then
 		readerUrl=self.Link..w.Link
 	else
 		readerUrl=self.Link..w.Manga.Link..w.Link
