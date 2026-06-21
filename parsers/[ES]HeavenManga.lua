@@ -34,11 +34,11 @@ function HeavenManga:getManga(h,i)
 end
 
 function HeavenManga:getPopularManga(n,i)
-	self:getManga(self.Link.."/top?page="..n,i)
+	self:getManga(self.Link.."/top?pages="..n,i)
 end
 
 function HeavenManga:getTagManga(n,i,o)
-	self:getManga(self.Link..tostring(self.Keys[o]).."?page="..n,i)
+	self:getManga(self.Link..tostring(self.Keys[o]).."?pages="..n,i)
 end
 
 function HeavenManga:searchManga(p,n,i)
