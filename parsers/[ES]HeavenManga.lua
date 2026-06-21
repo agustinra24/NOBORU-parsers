@@ -82,12 +82,18 @@ function HeavenManga:getChapters(q,i)
 end
 
 function HeavenManga:prepareChapter(w,i)
-	local j=e(self.Link..w.Manga.Link..w.Link)
+	local readerUrl
+	if w.Link:find("^/manga/leer/",1,true)then
+		readerUrl=self.Link..w.Link
+	else
+		readerUrl=self.Link..w.Manga.Link..w.Link
+	end
+	local j=e(readerUrl)
 	for url in j:gmatch([["imgURL":%s*"([^"]-)"]])do
 		i[#i+1]=url:gsub("\\/","/")
 	end
 	if#i==0 then
-		j=e({Link=self.Link..w.Manga.Link..w.Link,Header1="X-Requested-With: XMLHttpRequest"})
+		j=e({Link=readerUrl,Header1="X-Requested-With: XMLHttpRequest"})
 		for url in j:gmatch([["imgURL":%s*"([^"]-)"]])do
 			i[#i+1]=url:gsub("\\/","/")
 		end
